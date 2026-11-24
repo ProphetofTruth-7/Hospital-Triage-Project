@@ -93,6 +93,27 @@ class TestTriageSystem(unittest.TestCase):
             self.triage_system.add_patient(-3, "")
 
 
+    def test_complex_triage(self):
+        self.triage_system.add_patient(-1, "Lawrence")
+        self.triage_system.add_patient(-4, "Joshua")
+        self.triage_system.add_patient(-3, "Caleb")
+
+
+        self.assertEqual(self.triage_system.queue_size(), 3)
+        self.assertEqual(self.triage_system.process_patient(), (-4, 1, "Joshua"))
+        self.assertEqual(self.triage_system.queue_size(), 2)
+
+        self.triage_system.add_patient(-5, "Jeremy")
+        self.assertEqual(self.triage_system.queue_size(), 3)
+        self.assertEqual(self.triage_system.process_patient(), (-5, 3, "Jeremy"))
+        self.assertEqual(self.triage_system.queue_size(), 2)
+        self.assertEqual(self.triage_system.process_patient(), (-3, 2, "Caleb"))
+        self.assertEqual(self.triage_system.queue_size(), 1)
+        self.assertEqual(self.triage_system.process_patient(), (-1, 0, "Lawrence"))
+        self.assertEqual(self.triage_system.queue_size(), 0)
+        self.assertTrue(self.triage_system.queue_empty())
+        
+
 
 if __name__ == "__main__":
     unittest.main()
