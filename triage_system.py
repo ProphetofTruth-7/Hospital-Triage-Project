@@ -8,7 +8,13 @@ class TriageSystem:
 
     def add_patient(self, priority, task):
         #negative priorities(-5 is first, -1 is last)
-        heapq.heappush(self._triage_heap, (priority, next(self._arrival_counter), task))
+        if not task == "" and isinstance(task, str):
+            if priority > -6 and priority < 0 and isinstance(priority, int):
+                heapq.heappush(self._triage_heap, (priority, next(self._arrival_counter), task))
+            else:
+                raise ValueError("Invalid Priority")
+        else:
+            raise ValueError("Invalid Task")
 
     def process_patient(self):
         return heapq.heappop(self._triage_heap)
