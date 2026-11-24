@@ -73,11 +73,24 @@ class TestTriageSystem(unittest.TestCase):
         self.assertEqual(self.triage_system.queue_size(), 0)
 
     def test_process_empty_queue(self):
+        
         self.assertEqual(self.triage_system.process_patient(), None)
 
     def test_peek_empty_queue(self):
         self.assertEqual(self.triage_system.peek_patient(), None)
 
+    def test_invalid_priority_low(self):
+        with self.assertRaises(ValueError):
+            self.triage_system.add_patient(-6, "Lawrence")
+    def test_invalid_priority_high(self):
+        with self.assertRaises(ValueError):
+            self.triage_system.add_patient(0, "Lawrence")
+    def test_invalid_name(self):
+        with self.assertRaises(ValueError):
+            self.triage_system.add_patient(-3, "")
+
+
 
 if __name__ == "__main__":
     unittest.main()
+
