@@ -18,7 +18,8 @@ class TriageSystem:
 
     def process_patient(self):
         if not self.queue_empty():
-            return heapq.heappop(self._triage_heap)
+            priority, arrival_number, patient = heapq.heappop(self._triage_heap)
+            return (-priority, arrival_number, patient)
         else:
             return None
 
