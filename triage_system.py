@@ -38,16 +38,3 @@ class TriageSystem:
         
 
 
-system = TriageSystem()
-system.add_patient(-1, "Lawrence")
-system.add_patient(-3, "Catherine")
-system.add_patient(-5, "Diego")
-system.add_patient(-1, "Julian")
-system.add_patient(-4, "Roach")
-print(system.peek_patient())
-print(system.queue_size())
-
-system.clear_queue()
-
-print(system.queue_size())
-print(system.peek_patient())

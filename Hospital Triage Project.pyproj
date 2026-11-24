@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>674fed79-2c27-469b-8c88-9384879d5e35</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>triage_system.py</StartupFile>
+    <StartupFile>test_triage_system.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
