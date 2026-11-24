@@ -6,15 +6,15 @@ class TriageSystem:
         self._arrival_counter = count()
         self._triage_heap = []
 
-    def add_patient(self, priority, task):
+    def add_patient(self, priority, patient):
         #negative priorities(-5 is first, -1 is last)
-        if not task == "" and isinstance(task, str):
+        if not patient == "" and isinstance(patient, str):
             if priority > -6 and priority < 0 and isinstance(priority, int):
-                heapq.heappush(self._triage_heap, (priority, next(self._arrival_counter), task))
+                heapq.heappush(self._triage_heap, (priority, next(self._arrival_counter), patient))
             else:
                 raise ValueError("Invalid Priority")
         else:
-            raise ValueError("Invalid Task")
+            raise ValueError("Invalid Patient Name")
 
     def process_patient(self):
         if not self.queue_empty():
@@ -35,7 +35,8 @@ class TriageSystem:
 
     def peek_patient(self):
         if not self.queue_empty():
-            return self._triage_heap[0]
+            priority, arrival_number, patient = self._triage_heap[0]
+            return (-priority, arrival_number, patient)
         else:
             return None
 
