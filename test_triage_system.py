@@ -54,6 +54,7 @@ class TestTriageSystem(unittest.TestCase):
         self.assertEqual(self.triage_system.process_patient(), (-3, 2, "Caleb"))
         self.assertEqual(self.triage_system.process_patient(), (-1, 0, "Lawrence"))
         self.assertEqual(self.triage_system.queue_size(), 0)
+        self.assertTrue(self.triage_system.queue_empty())
 
     def test_pop_equal_priority(self):
         self.triage_system.add_patient(-1, "Lawrence")
@@ -71,13 +72,15 @@ class TestTriageSystem(unittest.TestCase):
         self.assertEqual(self.triage_system.queue_size(), 3)
         self.triage_system.clear_queue()
         self.assertEqual(self.triage_system.queue_size(), 0)
+        self.assertTrue(self.triage_system.queue_empty())
 
     def test_process_empty_queue(self):
-        
         self.assertEqual(self.triage_system.process_patient(), None)
+        self.assertTrue(self.triage_system.queue_empty())
 
     def test_peek_empty_queue(self):
         self.assertEqual(self.triage_system.peek_patient(), None)
+        self.assertTrue(self.triage_system.queue_empty())
 
     def test_invalid_priority_low(self):
         with self.assertRaises(ValueError):
