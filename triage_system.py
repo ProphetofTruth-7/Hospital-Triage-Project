@@ -37,6 +37,7 @@ class TriageSystem:
 
         
 
+
 system = TriageSystem()
 system.add_patient(-1, "Lawrence")
 system.add_patient(-3, "Catherine")
