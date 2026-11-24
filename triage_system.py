@@ -17,7 +17,10 @@ class TriageSystem:
             raise ValueError("Invalid Task")
 
     def process_patient(self):
-        return heapq.heappop(self._triage_heap)
+        if not self.queue_empty():
+            return heapq.heappop(self._triage_heap)
+        else:
+            return None
 
     def queue_empty(self):
         return len(self._triage_heap) == 0

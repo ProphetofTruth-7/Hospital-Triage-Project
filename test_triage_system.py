@@ -55,6 +55,14 @@ class TestTriageSystem(unittest.TestCase):
         self.assertEqual(self.triage_system.process_patient(), (-1, 0, "Lawrence"))
         self.assertEqual(self.triage_system.queue_size(), 0)
 
+    def test_pop_equal_priority(self):
+        self.triage_system.add_patient(-1, "Lawrence")
+        self.triage_system.add_patient(-3, "Joshua")
+        self.triage_system.add_patient(-3, "Caleb")
+
+        self.assertEqual(self.triage_system.queue_size(), 3)
+        self.assertEqual(self.triage_system.peek_patient(), (-3, 1, "Joshua"))
+
     def test_clear_queue(self):
         self.triage_system.add_patient(-1, "Lawrence")
         self.triage_system.add_patient(-4, "Joshua")
@@ -63,6 +71,12 @@ class TestTriageSystem(unittest.TestCase):
         self.assertEqual(self.triage_system.queue_size(), 3)
         self.triage_system.clear_queue()
         self.assertEqual(self.triage_system.queue_size(), 0)
+
+    def test_process_empty_queue(self):
+        self.assertEqual(self.triage_system.process_patient(), None)
+
+    def test_peek_empty_queue(self):
+        self.assertEqual(self.triage_system.peek_patient(), None)
 
 
 if __name__ == "__main__":
