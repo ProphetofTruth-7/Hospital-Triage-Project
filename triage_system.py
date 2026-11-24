@@ -35,6 +35,7 @@ class TriageSystem:
         else:
             return None
 
+        
 
 system = TriageSystem()
 system.add_patient(-1, "Lawrence")
