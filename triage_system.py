@@ -13,6 +13,8 @@ class TriageSystem:
     def get_patient(self):
         return heapq.heappop(self._triage_heap)
 
+    def process_patient(self):
+        print("Charles")
 
 
 system = TriageSystem()
@@ -22,4 +24,5 @@ system.add_patient(-3, "Catherine")
 system.add_patient(-5, "Diego")
 system.add_patient(-1, "Julian")
 system.add_patient(-4, "Roach")
+print(system.get_patient())
 print(system.get_patient())
