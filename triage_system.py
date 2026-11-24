@@ -19,6 +19,10 @@ class TriageSystem:
     def queue_size(self):
         return len(self._triage_heap)
 
+    def clear_queue(self):
+        while not len(self._triage_heap) == 0:
+            heapq.heappop(self._triage_heap)
+
     def peek_patient(self):
         if not self.queue_empty():
             return self._triage_heap[0]
@@ -34,4 +38,8 @@ system.add_patient(-1, "Julian")
 system.add_patient(-4, "Roach")
 print(system.peek_patient())
 print(system.queue_size())
-print(system.process_patient())
+
+system.clear_queue()
+
+print(system.queue_size())
+print(system.peek_patient())
